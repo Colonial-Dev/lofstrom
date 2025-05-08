@@ -1,9 +1,8 @@
-export repo_organization := env("GITHUB_REPOSITORY_OWNER", "yourname")
-export image_name := env("IMAGE_NAME", "yourimage")
-export centos_version := env("CENTOS_VERSION", "stream10")
-export fedora_version := env("CENTOS_VERSION", "41")
-export default_tag := env("DEFAULT_TAG", "latest")
-export bib_image := env("BIB_IMAGE", "quay.io/centos-bootc/bootc-image-builder:latest")
+export repo_organization := env("GITHUB_REPOSITORY_OWNER", "Colonial-Dev")
+export image_name        := env("IMAGE_NAME", "lofstrom")
+export fedora_version    := env("CENTOS_VERSION", "42")
+export default_tag       := env("DEFAULT_TAG", "latest")
+export bib_image         := env("BIB_IMAGE", "quay.io/centos-bootc/bootc-image-builder:latest")
 
 alias build-vm := build-qcow2
 alias rebuild-vm := rebuild-qcow2
@@ -45,7 +44,7 @@ clean:
     rm -f previous.manifest.json
     rm -f changelog.md
     rm -f output.env
-    rm -f output/
+    rm -rf output/
 
 # Sudo Clean Repo
 [group('Utility')]
@@ -106,10 +105,10 @@ build $target_image=image_name $tag=default_tag $dx="0" $hwe="0" $gdx="0":
     #!/usr/bin/env bash
 
     # Get Version
-    ver="${tag}-${centos_version}.$(date +%Y%m%d)"
+    ver="${tag}-${fedora_version}.$(date +%Y%m%d)"
 
     BUILD_ARGS=()
-    BUILD_ARGS+=("--build-arg" "MAJOR_VERSION=${centos_version}")
+    BUILD_ARGS+=("--build-arg" "MAJOR_VERSION=${fedora_version}")
     BUILD_ARGS+=("--build-arg" "IMAGE_NAME=${target_image}")
     BUILD_ARGS+=("--build-arg" "IMAGE_VENDOR=${repo_organization}")
     BUILD_ARGS+=("--build-arg" "ENABLE_DX=${dx}")
@@ -286,7 +285,7 @@ _run-vm $target_image $tag $type $config:
     run_args+=(--env "GPU=Y")
     run_args+=(--device=/dev/kvm)
     run_args+=(--volume "${PWD}/${image_file}":"/boot.${type}")
-    run_args+=(docker.io/qemux/qemu-docker)
+    run_args+=(docker.io/qemux/qemu)
 
     # Run the VM and open the browser to connect
     (sleep 30 && xdg-open http://localhost:"$port") &

@@ -1,0 +1,45 @@
+{
+    "rpm": {
+        "add": [
+            "adw-gtk3-theme",
+            "code",
+            "fd-find",
+            "ffmpeg",
+            "ffmpeg-libs",
+            "ffmpegthumbnailer",
+            "fuse",
+            "fish",
+            "fzf",
+            "just",
+            "lshw",
+            "pandoc",
+            "nmap",
+            "ripgrep",
+            "smartmontools",
+            "syncthing",
+            "tcpdump",
+            "tldr",
+            "traceroute",
+            "units",
+            "wl-clipboard"
+        ],
+        "del": [
+            "gnome-software-rpm-ostree",
+            "gnome-tour",
+            "malcontent-control",
+            "totem-video-thumbnailer"
+        ]
+    },
+    "flatpak": {
+        "add": [
+            "com.github.tchx84.Flatseal",
+            "com.mattjakeman.ExtensionManager",
+            "page.tesk.Refine"
+        ],
+        "del": [
+            "org.fedoraproject.MediaWriter",
+            "org.gnome.Connections",
+            "org.gnome.Extensions"
+        ]
+    }
+}
