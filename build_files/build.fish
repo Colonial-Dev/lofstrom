@@ -16,7 +16,7 @@ function trap -a command
     end
 end
 
-trap dnf5 rpm
+trap rsync mkdir dnf5 rpm flatpak curl chmod rm
 
 # Copy OS files into image root
 rsync -rvK /ctx/os_files/ /
@@ -88,21 +88,26 @@ end
 # -> Install Box
 curl \
     --proto '=https' --tlsv1.2 \
-    -Lo /usr/bin/box \
+    -Lo /usr/bin/bx \
     https://github.com/Colonial-Dev/box/releases/latest/download/bx-x86_64-unknown-linux-musl
 
-chmod 0755 /usr/bin/box
+chmod 0755 /usr/bin/bx
 
 # Other modifications
 
 # -> Enable automatic update timers
-systemctl enable rpm-ostreed-automatic.timer
-systemctl enable flatpak-system-update.timer
+systemctl          enable rpm-ostreed-automatic.timer
+systemctl          enable flatpak-system-update.timer
 systemctl --global enable flatpak-user-update.timer
 
 # -> Enable automatic Podman container restarts
 systemctl enable podman-restart.service
 systemctl --global enable podman-restart.service
+
+# -> Configure SELinux to allow containers to use devices + systemd
+setsebool -P container_use_devices     true
+setsebool -P container_use_dri_devices true
+setsebool -P container_manage_cgroup   true
 
 # Cleanup
 # -> Clear DNF caches
@@ -125,3 +130,9 @@ bash -c "
 
 # -> Remove Syncthing GUI icons
 rm /usr/share/applications/syncthing*
+
+# -> Remove unwanted repositories
+rm /etc/yum.repos.d/google-chrome.repo
+rm /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo
+rm /etc/yum.repos.d/rpmfusion-nonfree-steam.repo
+rm /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:phracek:PyCharm.repo
