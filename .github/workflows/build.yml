@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '00 00 * * *'  # Midnight UTC everyday
+    - cron: '0 0 * * 0'  # Auto-build the next version once a week.
   push:
     branches:
       - main
