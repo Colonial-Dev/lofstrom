@@ -21,7 +21,9 @@
             "tldr",
             "traceroute",
             "units",
-            "wl-clipboard"
+            "v4l-utils",
+            "wl-clipboard",
+            "ydotool"
         ],
         "del": [
             "gnome-software-rpm-ostree",
