@@ -3,6 +3,7 @@
         "add": [
             "adw-gtk3-theme",
             "code",
+            "fastfetch",
             "fd-find",
             "ffmpeg",
             "ffmpeg-libs",
