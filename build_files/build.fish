@@ -96,9 +96,8 @@ chmod 0755 /usr/bin/bx
 # Other modifications
 
 # -> Enable automatic update timers
-systemctl          enable rpm-ostreed-automatic.timer
-systemctl          enable flatpak-system-update.timer
-systemctl --global enable flatpak-user-update.timer
+systemctl enable rpm-ostreed-automatic.timer
+systemctl enable flatpak-system-update.timer
 
 # -> Enable automatic Podman container restarts
 systemctl enable podman-restart.service
