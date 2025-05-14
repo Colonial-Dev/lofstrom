@@ -24,7 +24,6 @@
             "units",
             "v4l-utils",
             "wl-clipboard",
-            "ydotool"
         ],
         "del": [
             "gnome-software",
