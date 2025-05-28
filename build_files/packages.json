@@ -23,7 +23,7 @@
             "traceroute",
             "units",
             "v4l-utils",
-            "wl-clipboard",
+            "wl-clipboard"
         ],
         "del": [
             "gnome-software",
