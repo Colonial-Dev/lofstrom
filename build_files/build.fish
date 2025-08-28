@@ -93,6 +93,10 @@ curl \
 
 chmod 0755 /usr/bin/bx
 
+# -> Install basic development tools and C toolchain
+dnf5 group install -y development-tools
+dnf5 group install -y c-development
+
 # Other modifications
 
 # -> Enable automatic update timers
