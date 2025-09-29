@@ -131,7 +131,7 @@ jobs:
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
       
       - name: Delete old container images
-        uses: snok/container-retention-policy@v3.0.0
+        uses: snok/container-retention-policy@v3.0.1
         with:
           account: user
           token: ${{ secrets.GITHUB_TOKEN }}
